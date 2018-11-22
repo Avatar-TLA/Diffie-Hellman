@@ -94,7 +94,6 @@ public class DiffieHellman {
         Scanner input = new Scanner(System.in);
         System.out.println("~Welcome to Diffie-Hellman application~");
         while(true) {
-            //Tha to ftiaksw sto mellon na exei perissoteres dunatothtes kai na kanv kai graphic
             System.out.println("Menu");
             System.out.println("1.Diffie-Hellman initiation values");
             System.out.println("2.Diffie-Hellman user1 keys creation");
