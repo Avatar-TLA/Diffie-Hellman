@@ -33,8 +33,8 @@ public class DiffieHellman {
             privatekey = new BigInteger(N, random);
         }
         BigInteger publickey = a.modPow(privatekey,q);
-        user.privatekey=privatekey;
-        user.publickey=publickey;
+        user.privatekey = privatekey;
+        user.publickey = publickey;
     }
 
     private static BigInteger CreatePrivateKey(BigInteger publickey, BigInteger privatekey, BigInteger q){
@@ -46,10 +46,10 @@ public class DiffieHellman {
         BigInteger key1 = new BigInteger("-1");
         BigInteger key2 = new BigInteger("-1");
         System.out.println("Public information i know");
-        System.out.println("q:"+q);
-        System.out.println("a:"+a);
-        System.out.println("Ya:"+ya);
-        System.out.println("Yb:"+yb);
+        System.out.println("q:" + q);
+        System.out.println("a:" + a);
+        System.out.println("Ya:" + ya);
+        System.out.println("Yb:" + yb);
         long start = System.nanoTime();
         while(counter.compareTo(q) < 0){
             if(key1.compareTo(ya) == 0){
@@ -57,14 +57,14 @@ public class DiffieHellman {
             }
             else {
                 counter = counter.add(BigInteger.ONE);
-                key1 = a.modPow(counter,q);
+                key1 = a.modPow(counter, q);
             }
         }
-        //System.out.println("Partial key1 found:"+key1 );
-        key1 = yb.modPow(counter,q);
-        System.out.println("Key found:"+key1 );
+        //System.out.println("Partial key1 found:" + key1 );
+        key1 = yb.modPow(counter, q);
+        System.out.println("Key found:" + key1 );
         long elapsedTime = System.nanoTime() - start;
-        System.out.println("First key cracked in:"+elapsedTime/1000000000.0+" second");
+        System.out.println("First key cracked in:" + elapsedTime/1000000000.0 + " second");
         /*start = System.nanoTime();
         counter = new BigInteger("0");
         while(counter.compareTo(q) < 0){
@@ -73,15 +73,15 @@ public class DiffieHellman {
             }
             else {
                 counter = counter.add(BigInteger.ONE);
-                key2 = a.modPow(counter,q);
+                key2 = a.modPow(counter, q);
             }
         }
-        System.out.println("Partial key2 found:"+key2 );
-        key2 = ya.modPow(counter,q);
+        System.out.println("Partial key2 found:" + key2 );
+        key2 = ya.modPow(counter, q);
         elapsedTime = System.nanoTime() - start;
-        System.out.println("Second key cracked in:"+elapsedTime/1000000000.0+" second");
+        System.out.println("Second key cracked in:" + elapsedTime/1000000000.0 + " second");
         if(key1.compareTo(key2) == 0){
-            System.out.println("Shared private key is:"+key1);
+            System.out.println("Shared private key is:" + key1);
         }
         else{
             System.out.println("Something went bad!");
@@ -111,33 +111,33 @@ public class DiffieHellman {
                     int N = input.nextInt();
                     key = new DiffieHellman(N);
                     System.out.println("~Public Information~");
-                    System.out.println("q:"+key.q);
-                    System.out.println("a:"+key.a);
+                    System.out.println("q:" + key.q);
+                    System.out.println("a:" + key.a);
                     break;
                 case 2:
                     user1 = new User();
                     System.out.println("Create keys for user1.");
                     CreatePublicKey(user1, key.q, key.a);
-                    System.out.println("Your private key:"+user1.privatekey);
-                    System.out.println("Your public key:"+user1.publickey);
+                    System.out.println("Your private key:" + user1.privatekey);
+                    System.out.println("Your public key:" + user1.publickey);
                     break;
                 case 3:
                     user2 = new User();
                     System.out.println("Create keys for user2.");
                     CreatePublicKey(user2, key.q, key.a);
-                    System.out.println("Your private key:"+user2.privatekey);
-                    System.out.println("Your public key:"+user2.publickey);
+                    System.out.println("Your private key:" + user2.privatekey);
+                    System.out.println("Your public key:" + user2.publickey);
                     break;
                 case 4:
                     BigInteger secretA = CreatePrivateKey(user2.publickey, user1.privatekey, key.q);
-                    System.out.println("SecretA is:"+secretA);
+                    System.out.println("SecretA is:" + secretA);
                     break;
                 case 5:
                     BigInteger secretB = CreatePrivateKey(user1.publickey, user2.privatekey, key.q);
-                    System.out.println("SecretB is:"+secretB);
+                    System.out.println("SecretB is:" + secretB);
                     break;
                 case 6:
-                    CrackKey(key.q,key.a,user1.publickey,user2.publickey);
+                    CrackKey(key.q, key.a, user1.publickey, user2.publickey);
                     break;
                 default:
                     System.out.println("Wrong Input.");
