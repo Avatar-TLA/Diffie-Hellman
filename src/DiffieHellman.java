@@ -60,11 +60,12 @@ public class DiffieHellman {
                 key1 = a.modPow(counter,q);
             }
         }
-        System.out.println("Partial key1 found:"+key1 );
+        //System.out.println("Partial key1 found:"+key1 );
         key1 = yb.modPow(counter,q);
+        System.out.println("Key found:"+key1 );
         long elapsedTime = System.nanoTime() - start;
         System.out.println("First key cracked in:"+elapsedTime/1000000000.0+" second");
-        start = System.nanoTime();
+        /*start = System.nanoTime();
         counter = new BigInteger("0");
         while(counter.compareTo(q) < 0){
             if(key2.compareTo(yb) == 0){
@@ -84,7 +85,7 @@ public class DiffieHellman {
         }
         else{
             System.out.println("Something went bad!");
-        }
+        }*/
     }
 
     public static void main(String[] args) {
